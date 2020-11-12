@@ -1,2 +1,5 @@
 *.o
 antiword
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
