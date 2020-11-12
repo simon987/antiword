@@ -259,6 +259,10 @@ bGetPPS(FILE *pFile,
 		}
 		tNameSize = (size_t)usGetWord(0x40, aucBytes);
 		tNameSize = (tNameSize + 1) / 2;
+		if ( tNameSize > sizeof(atPPSlist[iIndex].szName)) {
+			werr(0, "Name Size of PPS %d is too large", iIndex);
+			tNameSize = sizeof(atPPSlist[iIndex].szName);
+		}
 		vName2String(atPPSlist[iIndex].szName, aucBytes, tNameSize);
 		atPPSlist[iIndex].ucType = ucGetByte(0x42, aucBytes);
 		if (atPPSlist[iIndex].ucType == 5) {
