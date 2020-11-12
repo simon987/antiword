@@ -16,7 +16,6 @@ add_executable(antiword
         src/sectlist.c src/stylelist.c src/stylesheet.c src/summary.c src/tabstop.c
         src/text.c src/unix.c src/utf8.c src/word2text.c src/worddos.c src/wordlib.c
         src/wordmac.c src/wordole.c src/wordwin.c src/xmalloc.c src/xml.c
-
 )
 
 target_compile_options(
