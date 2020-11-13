@@ -1,8 +1,10 @@
 *.o
 antiword
+libantiword.a
 CMakeCache.txt
 CMakeFiles
 cmake_install.cmake
 .idea/
 Makefile
 *.cbp
+*.swp

@@ -4,8 +4,7 @@ set(CMAKE_C_STANDARD 11)
 project(antiword C)
 
 
-add_executable(antiword
-        src/main_u.c
+add_library(antiword
         src/asc85enc.c src/blocklist.c src/chartrans.c src/datalist.c
         src/depot.c src/dib2eps.c src/doclist.c src/fail.c src/finddata.c
         src/findtext.c src/fmt_text.c src/fontlist.c src/fonts.c src/fonts_u.c
