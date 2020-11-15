@@ -44,34 +44,34 @@ static ULONG	ulCharCounter;
 static int	iCurrPct, iPrevPct;
 #endif /* __riscos */
 /* The document is in the format belonging to this version of Word */
-static int	iWordVersion = -1;
+static __thread int	iWordVersion = -1;
 /* Special treatment for files from Word 4/5/6 on an Apple Macintosh */
-static BOOL	bOldMacFile = FALSE;
+static __thread BOOL	bOldMacFile = FALSE;
 /* Section Information */
-static const section_block_type	*pSection = NULL;
-static const section_block_type	*pSectionNext = NULL;
+static __thread const section_block_type	*pSection = NULL;
+static __thread const section_block_type	*pSectionNext = NULL;
 /* All the (command line) options */
-static options_type	tOptions;
+static __thread options_type	tOptions;
 /* Needed for reading a complete table row */
-static const row_block_type	*pRowInfo = NULL;
-static BOOL	bStartRow = FALSE;
-static BOOL	bEndRowNorm = FALSE;
-static BOOL	bEndRowFast = FALSE;
-static BOOL	bIsTableRow = FALSE;
+static __thread const row_block_type	*pRowInfo = NULL;
+static __thread BOOL	bStartRow = FALSE;
+static __thread BOOL	bEndRowNorm = FALSE;
+static __thread BOOL	bEndRowFast = FALSE;
+static __thread BOOL	bIsTableRow = FALSE;
 /* Index of the next style and font information */
-static USHORT	usIstdNext = ISTD_NORMAL;
+static __thread USHORT	usIstdNext = ISTD_NORMAL;
 /* Needed for finding the start of a style */
-static const style_block_type	*pStyleInfo = NULL;
-static style_block_type		tStyleNext;
-static BOOL	bStartStyle = FALSE;
-static BOOL	bStartStyleNext = FALSE;
+static __thread const style_block_type	*pStyleInfo = NULL;
+static __thread style_block_type		tStyleNext;
+static __thread BOOL	bStartStyle = FALSE;
+static __thread BOOL	bStartStyleNext = FALSE;
 /* Needed for finding the start of a font */
-static const font_block_type	*pFontInfo = NULL;
-static font_block_type		tFontNext;
-static BOOL	bStartFont = FALSE;
-static BOOL	bStartFontNext = FALSE;
+static __thread const font_block_type	*pFontInfo = NULL;
+static __thread font_block_type		tFontNext;
+static __thread BOOL	bStartFont = FALSE;
+static __thread BOOL	bStartFontNext = FALSE;
 /* Needed for finding an image */
-static ULONG	ulFileOffsetImage = FC_INVALID;
+static __thread ULONG	ulFileOffsetImage = FC_INVALID;
 
 
 /*

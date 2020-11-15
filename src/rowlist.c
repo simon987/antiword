@@ -20,10 +20,10 @@ typedef struct row_desc_tag {
 } row_desc_type;
 
 /* Variables needed to write the Row Information List */
-static row_desc_type	*pAnchor = NULL;
-static row_desc_type	*pRowLast = NULL;
+static __thread row_desc_type	*pAnchor = NULL;
+static __thread row_desc_type	*pRowLast = NULL;
 /* Variable needed to read the Row Information List */
-static row_desc_type	*pRowCurrent = NULL;
+static __thread row_desc_type	*pRowCurrent = NULL;
 
 
 /*

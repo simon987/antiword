@@ -12,7 +12,7 @@
 #include "antiword.h"
 
 /* Used for numbering the chapters */
-static unsigned int	auiHdrCounter[9];
+static __thread unsigned int	auiHdrCounter[9];
 
 
 /*

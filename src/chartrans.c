@@ -145,8 +145,8 @@ typedef struct char_table_tag {
 	USHORT	usUnicode;
 } char_table_type;
 
-static char_table_type	atCharTable[256];
-static size_t		tNextPosFree = 0;
+static __thread char_table_type	atCharTable[256];
+static __thread size_t		tNextPosFree = 0;
 
 
 /*

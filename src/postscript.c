@@ -21,36 +21,36 @@
 #include "antiword.h"
 
 /* The character set */
-static encoding_type	eEncoding = encoding_neutral;
+static __thread encoding_type	eEncoding = encoding_neutral;
 /* The image level */
-static image_level_enum	eImageLevel = level_default;
+static __thread image_level_enum	eImageLevel = level_default;
 /* The output must use landscape orientation */
-static BOOL		bUseLandscape = FALSE;
+static __thread BOOL		bUseLandscape = FALSE;
 /* The height and width of a PostScript page (in DrawUnits) */
-static long		lPageHeight = LONG_MAX;
-static long		lPageWidth = LONG_MAX;
+static __thread long		lPageHeight = LONG_MAX;
+static __thread long		lPageWidth = LONG_MAX;
 /* The height of the footer on the current page (in DrawUnits) */
-static long		lFooterHeight = 0;
+static __thread long		lFooterHeight = 0;
 /* Inside a footer (to prevent an infinite loop when the footer is too big) */
-static BOOL		bInFtrSpace = FALSE;
+static __thread BOOL		bInFtrSpace = FALSE;
 /* Current time for a PS header */
-static const char	*szCreationDate = NULL;
+static __thread const char	*szCreationDate = NULL;
 /* Current creator for a PS header */
-static const char	*szCreator = NULL;
+static __thread const char	*szCreator = NULL;
 /* Current font information */
-static drawfile_fontref	tFontRefCurr = (drawfile_fontref)-1;
-static USHORT		usFontSizeCurr = 0;
-static int		iFontColorCurr = -1;
+static __thread drawfile_fontref	tFontRefCurr = (drawfile_fontref)-1;
+static __thread USHORT		usFontSizeCurr = 0;
+static __thread int		iFontColorCurr = -1;
 /* Current vertical position information */
-static long		lYtopCurr = -1;
+static __thread long		lYtopCurr = -1;
 /* PostScript page counter */
-static int		iPageCount = 0;
+static __thread int		iPageCount = 0;
 /* Image counter */
-static int		iImageCount = 0;
+static __thread int		iImageCount = 0;
 /* Section index */
-static int		iSectionIndex = 0;
+static __thread int		iSectionIndex = 0;
 /* Are we on the first page of the section? */
-static BOOL		bFirstInSection = TRUE;
+static __thread BOOL		bFirstInSection = TRUE;
 
 static void		vMoveTo(diagram_type *, long);
 

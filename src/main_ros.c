@@ -47,13 +47,13 @@
 static char	*szTask = "!Antiword";
 
 /* The window handle of the choices window */
-static window_handle	tChoicesWindow = 0;
+static __thread window_handle	tChoicesWindow = 0;
 
 /* Dummy diagram with the iconbar menu pointer */
-static diagram_type	tDummyDiagram;
+static __thread diagram_type	tDummyDiagram;
 
 /* Program information Box */
-static dialog2_block	*pInfoBox = NULL;
+static __thread dialog2_block	*pInfoBox = NULL;
 
 /* Info box fields */
 #define PURPOSE_INFO_FIELD	2

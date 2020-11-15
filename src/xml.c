@@ -22,35 +22,35 @@
 /* The character set */
 static encoding_type	eEncoding = encoding_neutral;
 /* Word version */
-static int	iWordVersion = -1;
+static __thread int	iWordVersion = -1;
 /* Special treatment for files from Word 4/5/6 on an Apple Macintosh */
-static BOOL	bOldMacFile = FALSE;
+static __thread BOOL	bOldMacFile = FALSE;
 /* Text is emphasised */
-static BOOL	bEmphasisOpen = FALSE;
+static __thread BOOL	bEmphasisOpen = FALSE;
 /* Text is superscript */
-static BOOL	bSuperscriptOpen = FALSE;
+static __thread BOOL	bSuperscriptOpen = FALSE;
 /* Text is subscript */
-static BOOL	bSubscriptOpen = FALSE;
+static __thread BOOL	bSubscriptOpen = FALSE;
 /* Title is open */
-static BOOL	bTitleOpen = FALSE;
+static __thread BOOL	bTitleOpen = FALSE;
 /* Table is open */
-static BOOL	bTableOpen = FALSE;
+static __thread BOOL	bTableOpen = FALSE;
 /* Footnote is open */
-static BOOL	bFootnoteOpen = FALSE;
+static __thread BOOL	bFootnoteOpen = FALSE;
 /* Current paragraph level */
-static UINT	uiParagraphLevel = 0;
+static __thread UINT	uiParagraphLevel = 0;
 /* Current list level */
-static UINT	uiListLevel = 0;
+static __thread UINT	uiListLevel = 0;
 /* Current list level is still empty */
-static BOOL	bEmptyListLevel = TRUE;
+static __thread BOOL	bEmptyListLevel = TRUE;
 /* Current header level */
-static USHORT	usHeaderLevelCurrent = 0;
+static __thread USHORT	usHeaderLevelCurrent = 0;
 /* Current header level is still empty */
-static BOOL	bEmptyHeaderLevel = TRUE;
+static __thread BOOL	bEmptyHeaderLevel = TRUE;
 /* Number of columns in the current table */
-static int	iTableColumnsCurrent = 0;
+static __thread int	iTableColumnsCurrent = 0;
 /* Footnote number */
-static UINT	uiFootnoteNumber = 0;
+static __thread UINT	uiFootnoteNumber = 0;
 
 /* Constants for the stack */
 #define INITIAL_STACK_SIZE	10
@@ -61,9 +61,9 @@ static UINT	uiFootnoteNumber = 0;
 #endif /* DEBUG */
 
 /* Variables for the stack */
-static UCHAR	*aucStack = NULL;
-static size_t	tStacksize = 0;
-static size_t	tStackNextFree = 0;
+static __thread UCHAR	*aucStack = NULL;
+static __thread size_t	tStacksize = 0;
+static __thread size_t	tStackNextFree = 0;
 
 /* Constants for the tags */
 #define TAG_NOTAG		(UCHAR)0

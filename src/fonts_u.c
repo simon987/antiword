@@ -13,9 +13,9 @@
 #include "fontinfo.h"
 
 /* Don't use fonts, just plain text */
-static BOOL		bUsePlainText = TRUE;
+static __thread BOOL		bUsePlainText = TRUE;
 /* Which character set should be used */
-static encoding_type	eEncoding = encoding_neutral;
+static __thread encoding_type	eEncoding = encoding_neutral;
 
 
 /*

@@ -20,13 +20,13 @@ typedef struct footnote_local_tag {
 } footnote_local_type;
 
 /* Variables needed to write the Footnote and Endnote information */
-static ULONG	*aulFootnoteList = NULL;
-static size_t	tFootnoteListLength = 0;
-static ULONG	*aulEndnoteList = NULL;
-static size_t	tEndnoteListLength = 0;
+static __thread ULONG	*aulFootnoteList = NULL;
+static __thread size_t	tFootnoteListLength = 0;
+static __thread ULONG	*aulEndnoteList = NULL;
+static __thread size_t	tEndnoteListLength = 0;
 /* Variables needed to write the Footnote Text */
-static footnote_local_type	*pFootnoteText = NULL;
-static size_t			tFootnoteTextLength = 0;
+static __thread footnote_local_type	*pFootnoteText = NULL;
+static __thread size_t			tFootnoteTextLength = 0;
 
 
 /*

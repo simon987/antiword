@@ -27,20 +27,20 @@ typedef struct readinfo_tag {
 } readinfo_type;
 
 /* Variables to describe the start of the block lists */
-static list_mem_type	*pTextAnchor = NULL;
-static list_mem_type	*pFootnoteAnchor = NULL;
-static list_mem_type	*pHdrFtrAnchor = NULL;
-static list_mem_type	*pMacroAnchor = NULL;
-static list_mem_type	*pAnnotationAnchor = NULL;
-static list_mem_type	*pEndnoteAnchor = NULL;
-static list_mem_type	*pTextBoxAnchor = NULL;
-static list_mem_type	*pHdrTextBoxAnchor = NULL;
+static __thread list_mem_type	*pTextAnchor = NULL;
+static __thread list_mem_type	*pFootnoteAnchor = NULL;
+static __thread list_mem_type	*pHdrFtrAnchor = NULL;
+static __thread list_mem_type	*pMacroAnchor = NULL;
+static __thread list_mem_type	*pAnnotationAnchor = NULL;
+static __thread list_mem_type	*pEndnoteAnchor = NULL;
+static __thread list_mem_type	*pTextBoxAnchor = NULL;
+static __thread list_mem_type	*pHdrTextBoxAnchor = NULL;
 /* Variable needed to build the block list */
-static list_mem_type	*pBlockLast = NULL;
+static __thread list_mem_type	*pBlockLast = NULL;
 /* Variable needed to read the block lists */
-static readinfo_type	tOthers = { NULL, 0, 0, };
-static readinfo_type	tHdrFtr = { NULL, 0, 0, };
-static readinfo_type	tFootnote = { NULL, 0, 0, };
+static __thread readinfo_type	tOthers = { NULL, 0, 0, };
+static __thread readinfo_type	tHdrFtr = { NULL, 0, 0, };
+static __thread readinfo_type	tFootnote = { NULL, 0, 0, };
 
 
 /*

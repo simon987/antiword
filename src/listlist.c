@@ -31,16 +31,16 @@ typedef struct list_value_tag {
 } list_value_type;
 
 /* Variables needed to describe the LFO list (pllfo) */
-static ULONG		*aulLfoList = NULL;
-static USHORT		usLfoLen = 0;
+static __thread ULONG		*aulLfoList = NULL;
+static __thread USHORT		usLfoLen = 0;
 /* Variables needed to write the List Information List */
-static list_desc_type	*pAnchor = NULL;
-static list_desc_type	*pBlockLast = NULL;
+static __thread list_desc_type	*pAnchor = NULL;
+static __thread list_desc_type	*pBlockLast = NULL;
 /* Variable needed for numbering new lists */
-static list_value_type	*pValues = NULL;
+static __thread list_value_type	*pValues = NULL;
 /* Variables needed for numbering old lists */
-static int	iOldListSeqNumber = 0;
-static USHORT	usOldListValue = 0;
+static __thread int	iOldListSeqNumber = 0;
+static __thread USHORT	usOldListValue = 0;
 
 
 /*

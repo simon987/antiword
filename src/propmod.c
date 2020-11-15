@@ -17,9 +17,9 @@
 #endif /* DEBUG */
 
 /* Variables needed to write the property modifier list */
-static UCHAR	**ppAnchor = NULL;
-static size_t	tNextFree = 0;
-static size_t	tMaxElements = 0;
+static __thread UCHAR	**ppAnchor = NULL;
+static __thread size_t	tNextFree = 0;
+static __thread size_t	tMaxElements = 0;
 
 
 /*

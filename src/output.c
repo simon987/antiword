@@ -8,7 +8,7 @@
 
 #include "antiword.h"
 
-static conversion_type	eConversionType = conversion_unknown;
+static __thread conversion_type	eConversionType = conversion_unknown;
 static encoding_type	eEncoding = encoding_neutral;
 
 
@@ -153,7 +153,7 @@ bAddDummyImage(diagram_type *pDiag, const imagedata_type *pImg)
  * remark: does not return if the diagram can't be created
  */
 diagram_type *
-pCreateDiagram(const char *szTask, const char *szFilename)
+pCreateDiagram(const char *szTask, const char *szFilename, FILE* outfile)
 {
 	diagram_type	*pDiag;
 
@@ -163,7 +163,7 @@ pCreateDiagram(const char *szTask, const char *szFilename)
 	/* Get the necessary memory */
 	pDiag = xmalloc(sizeof(diagram_type));
 	/* Initialization */
-	pDiag->pOutFile = stdout;
+	pDiag->pOutFile = outfile;
 	vPrologue1(pDiag, szTask, szFilename);
 	/* Return success */
 	return pDiag;

@@ -27,8 +27,8 @@
 #define FAMILY_DECORATIVE	5
 
 /* Font Translation Table */
-static size_t		tFontTableRecords = 0;
-static font_table_type	*pFontTable = NULL;
+static __thread size_t		tFontTableRecords = 0;
+static __thread font_table_type	*pFontTable = NULL;
 
 /*
  * Find the given font in the font table

@@ -33,8 +33,8 @@ typedef struct hdrftr_mem_tag {
 } hdrftr_mem_type;
 
 /* Variables needed to write the Header/footer Information List */
-static hdrftr_mem_type	*pHdrFtrList = NULL;
-static size_t		tHdrFtrLen = 0;
+static __thread hdrftr_mem_type	*pHdrFtrList = NULL;
+static __thread size_t		tHdrFtrLen = 0;
 
 
 /*

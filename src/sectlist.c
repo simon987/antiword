@@ -22,8 +22,8 @@ typedef struct section_mem_tag {
 } section_mem_type;
 
 /* Variables needed to write the Section Information List */
-static section_mem_type	*pAnchor = NULL;
-static section_mem_type	*pSectionLast = NULL;
+static __thread section_mem_type	*pAnchor = NULL;
+static __thread section_mem_type	*pSectionLast = NULL;
 
 
 /*

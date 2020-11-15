@@ -8,7 +8,7 @@
 
 #include "antiword.h"
 
-static BOOL	bOldMacFile = FALSE;
+static __thread BOOL	bOldMacFile = FALSE;
 
 
 /*

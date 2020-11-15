@@ -23,42 +23,42 @@
 #endif /* DEBUG */
 
 /* The character set */
-static encoding_type	eEncoding = encoding_neutral;
+static __thread encoding_type	eEncoding = encoding_neutral;
 /* Current creator for a PDF header */
-static const char	*szProducer = NULL;
+static __thread const char	*szProducer = NULL;
 /* The height and width of a PDF page (in DrawUnits) */
-static long		lPageHeight = LONG_MAX;
-static long		lPageWidth = LONG_MAX;
+static __thread long		lPageHeight = LONG_MAX;
+static __thread long		lPageWidth = LONG_MAX;
 /* The height of the footer on the current page (in DrawUnits) */
-static long		lFooterHeight = 0;
+static __thread long		lFooterHeight = 0;
 /* Inside a footer (to prevent an infinite loop when the footer is too big) */
-static BOOL		bInFtrSpace = FALSE;
+static __thread BOOL		bInFtrSpace = FALSE;
 /* Current font information */
-static drawfile_fontref	tFontRefCurr = (drawfile_fontref)-1;
-static USHORT		usFontSizeCurr = 0;
-static int		iFontColorCurr = -1;
+static __thread drawfile_fontref	tFontRefCurr = (drawfile_fontref)-1;
+static __thread USHORT		usFontSizeCurr = 0;
+static __thread int		iFontColorCurr = -1;
 /* Current vertical position information */
-static long		lYtopCurr = -1;
+static __thread long		lYtopCurr = -1;
 /* Image counter */
-static int		iImageCount = 0;
+static __thread int		iImageCount = 0;
 /* Section index */
-static int		iSectionIndex = 0;
+static __thread int		iSectionIndex = 0;
 /* Are we on the first page of the section? */
-static BOOL		bFirstInSection = TRUE;
+static __thread BOOL		bFirstInSection = TRUE;
 /* File positions */
-static long		lFilePosition = 0;
-static long		*alLocation = NULL;
-static size_t		tLocations = 0;
-static int		iMaxLocationNumber = 0;
+static __thread long		lFilePosition = 0;
+static __thread long		*alLocation = NULL;
+static __thread size_t		tLocations = 0;
+static __thread int		iMaxLocationNumber = 0;
 /* File position at the start of a page */
-static long		lStreamStart = -1;
+static __thread long		lStreamStart = -1;
 /* Page objects */
-static int		*aiPageObject = NULL;
-static int		iPageCount = 0;
-static size_t		tMaxPageObjects = 0;
+static __thread int		*aiPageObject = NULL;
+static __thread int		iPageCount = 0;
+static __thread size_t		tMaxPageObjects = 0;
 /* Current object number */
 /* 1 = root; 2 = info; 3 = pages; 4 = encoding; 5-16 = fonts; 17 = resources */
-static int		iObjectNumberCurr = 17;
+static __thread int		iObjectNumberCurr = 17;
 
 static void		vMoveTo(diagram_type *, long);
 

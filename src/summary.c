@@ -32,15 +32,15 @@
 #define TIME_OFFSET_HI		0x019db1de
 #define TIME_OFFSET_LO		0xd53e8000
 
-static char	*szTitle = NULL;
-static char	*szSubject = NULL;
-static char	*szAuthor = NULL;
-static time_t	tCreateDtm = (time_t)-1;
-static time_t	tLastSaveDtm= (time_t)-1;
-static char	*szAppName = NULL;
-static char	*szManager = NULL;
-static char	*szCompany = NULL;
-static USHORT	usLid = (USHORT)-1;
+static __thread char	*szTitle = NULL;
+static __thread char	*szSubject = NULL;
+static __thread char	*szAuthor = NULL;
+static __thread time_t	tCreateDtm = (time_t)-1;
+static __thread time_t	tLastSaveDtm= (time_t)-1;
+static __thread char	*szAppName = NULL;
+static __thread char	*szManager = NULL;
+static __thread char	*szCompany = NULL;
+static __thread USHORT	usLid = (USHORT)-1;
 
 
 /*

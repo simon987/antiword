@@ -25,15 +25,15 @@ typedef struct data_mem_tag {
 } data_mem_type;
 
 /* Variable to describe the start of the data block list */
-static data_mem_type	*pAnchor = NULL;
+static __thread data_mem_type	*pAnchor = NULL;
 /* Variable needed to read the data block list */
-static data_mem_type	*pBlockLast = NULL;
+static __thread data_mem_type	*pBlockLast = NULL;
 /* Variable needed to read the data block list */
-static data_mem_type	*pBlockCurrent = NULL;
-static ULONG	ulBlockOffset = 0;
-static size_t	tByteNext = 0;
+static __thread data_mem_type	*pBlockCurrent = NULL;
+static __thread ULONG	ulBlockOffset = 0;
+static __thread size_t	tByteNext = 0;
 /* Last block read */
-static UCHAR	aucBlock[BIG_BLOCK_SIZE];
+static __thread UCHAR	aucBlock[BIG_BLOCK_SIZE];
 
 
 /*

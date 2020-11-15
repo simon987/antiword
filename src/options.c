@@ -34,7 +34,7 @@ extern int getopt(int, char **, const char *);
 #endif /* __riscos */
 
 /* Current values for options */
-static options_type	tOptionsCurr;
+static __thread options_type	tOptionsCurr;
 #if defined(__riscos)
 /* Temporary values for options */
 static options_type	tOptionsTemp;
@@ -479,7 +479,8 @@ iReadOptions(int argc, char **argv)
 		}
 	}
 
-	tOptionsCurr.eEncoding = eMappingFile2Encoding(szLeafname);
+//	tOptionsCurr.eEncoding = eMappingFile2Encoding(szLeafname);
+    tOptionsCurr.eEncoding = encoding_latin_2;
 	DBG_DEC(tOptionsCurr.eEncoding);
 
 	if (tOptionsCurr.eConversionType == conversion_ps &&
@@ -537,10 +538,13 @@ iReadOptions(int argc, char **argv)
 void
 vGetOptions(options_type *pOptions)
 {
-	fail(pOptions == NULL);
-
 	*pOptions = tOptionsCurr;
 } /* end of vGetOptions */
+
+options_type *direct_vGetOptions()
+{
+    return &tOptionsCurr;
+}
 
 #if defined(__riscos)
 /*

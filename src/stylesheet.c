@@ -15,10 +15,10 @@
 #define SGC_CHP		2
 
 /* Variables needed to describe the stylesheet list */
-static style_block_type	*atStyleInfo = NULL;
-static font_block_type	*atFontInfo = NULL;
-static BOOL		*abFilled = NULL;
-static size_t		tStdCount = 0;
+static __thread style_block_type	*atStyleInfo = NULL;
+static __thread font_block_type	*atFontInfo = NULL;
+static __thread BOOL		*abFilled = NULL;
+static __thread size_t		tStdCount = 0;
 
 
 /*

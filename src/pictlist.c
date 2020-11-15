@@ -20,8 +20,8 @@ typedef struct picture_mem_tag {
 } picture_mem_type;
 
 /* Variables needed to write the Picture Information List */
-static picture_mem_type	*pAnchor = NULL;
-static picture_mem_type	*pPictureLast = NULL;
+static __thread picture_mem_type	*pAnchor = NULL;
+static __thread picture_mem_type	*pPictureLast = NULL;
 
 
 /*

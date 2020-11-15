@@ -309,7 +309,7 @@ extern void	vCreateDocumentInfoList(const document_block_type *);
 extern UCHAR	ucGetDopHdrFtrSpecification(void);
 /* draw.c & output.c */
 extern BOOL	bAddDummyImage(diagram_type *, const imagedata_type *);
-extern diagram_type *pCreateDiagram(const char *, const char *);
+extern diagram_type *pCreateDiagram(const char *, const char *, FILE* outfile);
 extern void	vPrologue2(diagram_type *, int);
 extern void	vMove2NextLine(diagram_type *, drawfile_fontref, USHORT);
 extern void	vSubstring2Diagram(diagram_type *,
@@ -465,6 +465,7 @@ extern notetype_enum eGetNotetype(ULONG);
 /* options.c */
 extern int	iReadOptions(int, char **);
 extern void	vGetOptions(options_type *);
+extern options_type *direct_vGetOptions();
 #if defined(__riscos)
 extern void	vChoicesOpenAction(window_handle);
 extern BOOL	bChoicesMouseClick(event_pollblock *, void *);

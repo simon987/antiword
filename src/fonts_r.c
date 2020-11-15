@@ -12,7 +12,7 @@
 #include "drawfile.h"
 #include "antiword.h"
 
-static font_handle	tFontCurr = (font_handle)-1;
+static __thread font_handle	tFontCurr = (font_handle)-1;
 
 /*
  * pOpenFontTableFile - open the Font translation file

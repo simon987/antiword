@@ -14,8 +14,8 @@
 #define HALF_INCH	36000L  /* In millipoints */
 
 /* Variables needed to write the Document Information List */
-static document_block_type *pAnchor = NULL;
-static document_block_type tInfo;
+static __thread document_block_type *pAnchor = NULL;
+static __thread document_block_type tInfo;
 
 
 /*

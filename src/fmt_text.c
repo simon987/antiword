@@ -14,11 +14,11 @@
 #include "antiword.h"
 
 /* The character set */
-static encoding_type	eEncoding = encoding_neutral;
+static __thread encoding_type	eEncoding = encoding_neutral;
 /* Current vertical position information */
-static long		lYtopCurr = 0;
+static __thread long		lYtopCurr = 0;
 /* Local representation of the non-breaking space */
-static UCHAR		ucNbsp = 0;
+static __thread UCHAR		ucNbsp = 0;
 
 
 /*

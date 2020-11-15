@@ -10,8 +10,8 @@
 
 #define SIZE_RATIO	(BIG_BLOCK_SIZE/SMALL_BLOCK_SIZE)
 
-static ULONG	*aulSmallBlockList = NULL;
-static size_t	tSmallBlockListLen = 0;
+static __thread ULONG	*aulSmallBlockList = NULL;
+static __thread size_t	tSmallBlockListLen = 0;
 
 
 /*

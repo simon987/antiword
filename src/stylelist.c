@@ -23,16 +23,16 @@ typedef struct style_mem_tag {
 } style_mem_type;
 
 /* Variables needed to write the Style Information List */
-static style_mem_type	*pAnchor = NULL;
-static style_mem_type	*pStyleLast = NULL;
+static __thread style_mem_type	*pAnchor = NULL;
+static __thread style_mem_type	*pStyleLast = NULL;
 /* The type of conversion */
-static conversion_type	eConversionType = conversion_unknown;
+static __thread conversion_type	eConversionType = conversion_unknown;
 /* The character set encoding */
-static encoding_type	eEncoding = encoding_neutral;
+static __thread encoding_type	eEncoding = encoding_neutral;
 /* Values for efficiency reasons */
-static const style_mem_type	*pMidPtr = NULL;
-static BOOL		bMoveMidPtr = FALSE;
-static BOOL		bInSequence = TRUE;
+static __thread const style_mem_type	*pMidPtr = NULL;
+static __thread BOOL		bMoveMidPtr = FALSE;
+static __thread BOOL		bInSequence = TRUE;
 
 
 /*

@@ -21,8 +21,8 @@ typedef struct font_desc_tag {
 } font_mem_type;
 
 /* Variables needed to write the Font Information List */
-static font_mem_type	*pAnchor = NULL;
-static font_mem_type	*pFontLast = NULL;
+static __thread font_mem_type	*pAnchor = NULL;
+static __thread font_mem_type	*pFontLast = NULL;
 
 
 /*
