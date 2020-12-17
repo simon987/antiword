@@ -207,7 +207,7 @@ tFiletime(ULONG ulOffset, const UCHAR *aucBuffer)
 /*
  * vAnalyseSummaryInfo - analyse the summary information
  */
-static void
+static BOOL
 vAnalyseSummaryInfo(const UCHAR *aucBuffer)
 {
 	ULONG	ulOffset;
@@ -220,6 +220,9 @@ vAnalyseSummaryInfo(const UCHAR *aucBuffer)
 		ulOffset = ulGetLong(12 + tIndex * 8, aucBuffer);
 		NO_DBG_DEC(tPropID);
 		NO_DBG_HEX(ulOffset);
+		if (isOutOfBounds(ulOffset)) {
+		    return FALSE;
+		}
 		tPropType = (size_t)ulGetLong(ulOffset, aucBuffer);
 		NO_DBG_DEC(tPropType);
 		switch (tPropID) {
@@ -277,6 +280,9 @@ vAnalyseDocumentSummaryInfo(const UCHAR *aucBuffer)
 		ulOffset = ulGetLong(12 + tIndex * 8, aucBuffer);
 		NO_DBG_DEC(tPropID);
 		NO_DBG_HEX(ulOffset);
+		if (isOutOfBounds(ulOffset)) {
+		    return;
+		}
 		tPropType = (size_t)ulGetLong(ulOffset, aucBuffer);
 		NO_DBG_DEC(tPropType);
 		switch (tPropID) {
@@ -406,6 +412,7 @@ pucAnalyseSummaryInfoHeader(FILE *pFile,
 
 	/* Read the Summery Information */
 	aucBuffer = xmalloc(tLength);
+	setBufferSize(tLength);
 	if (!bReadBuffer(pFile, ulStartBlock,
 			aulBlockDepot, tBlockDepotLen, tBlockSize,
 			aucBuffer, ulOffset, tLength)) {
@@ -625,7 +632,9 @@ vSetSummaryInfoOLE(FILE *pFile, const pps_info_type *pPPS,
 		pPPS->tSummaryInfo.ulSB, pPPS->tSummaryInfo.ulSize,
 		aulBBD, tBBDLen, aulSBD, tSBDLen);
 	if (pucBuffer != NULL) {
-		vAnalyseSummaryInfo(pucBuffer);
+		if (!vAnalyseSummaryInfo(pucBuffer)) {
+		    return;
+		}
 		pucBuffer = xfree(pucBuffer);
 	}
 

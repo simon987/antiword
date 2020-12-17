@@ -63,6 +63,9 @@ vAdd2PropModList(const UCHAR *aucPropMod)
 	NO_DBG_DEC(tNextFree);
 
 	tLen = 2 + (size_t)usGetWord(0, aucPropMod);
+	if (isOutOfBounds(tLen)) {
+	    return;
+	}
 	NO_DBG_HEX(tLen);
 	NO_DBG_PRINT_BLOCK(pucPropMod, tLen);
 	ppAnchor[tNextFree] = xmalloc(tLen);

@@ -458,6 +458,9 @@ vGet6Stylesheet(FILE *pFile, ULONG ulStartBlock,
 		     iIndex < (int)tStdCount;
 		     iIndex++, tOffset += 2 + tStdLen) {
 			NO_DBG_DEC(tOffset);
+			if (tOffset > tStshInfoLen) {
+			    return;
+			}
 			tStdLen = (size_t)usGetWord(tOffset, aucBuffer);
 			NO_DBG_DEC(tStdLen);
 			if (abFilled[iIndex]) {
@@ -505,6 +508,9 @@ vGet6Stylesheet(FILE *pFile, ULONG ulStartBlock,
 			NO_DBG_DEC(usUpxCount);
 			tPos = 2 + tStdBaseInFile;
 			NO_DBG_DEC(tPos);
+			if (tOffset + tPos > tStshInfoLen) {
+			    return;
+			}
 			tNameLen = (size_t)ucGetByte(tOffset + tPos, aucBuffer);
 			NO_DBG_DEC(tNameLen);
 			NO_DBG_STRN(aucBuffer + tOffset + tPos + 1, tNameLen);
@@ -590,7 +596,7 @@ vGet6Stylesheet(FILE *pFile, ULONG ulStartBlock,
 /*
  * Build the lists with Stylesheet Information for Word 8/9/10 files
  */
-void
+BOOL
 vGet8Stylesheet(FILE *pFile, const pps_info_type *pPPS,
 	const ULONG *aulBBD, size_t tBBDLen,
 	const ULONG *aulSBD, size_t tSBDLen,
@@ -619,7 +625,7 @@ vGet8Stylesheet(FILE *pFile, const pps_info_type *pPPS,
 	NO_DBG_HEX(pPPS->tTable.ulSize);
 	if (pPPS->tTable.ulSize == 0) {
 		DBG_MSG("No stylesheet information");
-		return;
+		return TRUE;
 	}
 
 	if (pPPS->tTable.ulSize < MIN_SIZE_FOR_BBD_USE) {
@@ -638,7 +644,7 @@ vGet8Stylesheet(FILE *pFile, const pps_info_type *pPPS,
 			aulBlockDepot, tBlockDepotLen, tBlockSize,
 			aucBuffer, ulBeginStshInfo, tStshInfoLen)) {
 		aucBuffer = xfree(aucBuffer);
-		return;
+		return FALSE;
 	}
 	NO_DBG_PRINT_BLOCK(aucBuffer, tStshInfoLen);
 
@@ -659,6 +665,10 @@ vGet8Stylesheet(FILE *pFile, const pps_info_type *pPPS,
 		     iIndex < (int)tStdCount;
 		     iIndex++, tOffset += 2 + tStdLen) {
 			NO_DBG_DEC(tOffset);
+			if (tOffset + 6 > tStshInfoLen) {
+                aucBuffer = xfree(aucBuffer);
+			    return FALSE;
+			}
 			tStdLen = (size_t)usGetWord(tOffset, aucBuffer);
 			NO_DBG_DEC(tStdLen);
 			if (abFilled[iIndex]) {
@@ -706,6 +716,9 @@ vGet8Stylesheet(FILE *pFile, const pps_info_type *pPPS,
 			NO_DBG_DEC(usUpxCount);
 			tPos = 2 + tStdBaseInFile;
 			NO_DBG_DEC(tPos);
+			if (tOffset + tPos > tStshInfoLen) {
+			    return FALSE;
+			}
 			tNameLen = (size_t)usGetWord(tOffset + tPos, aucBuffer);
 			NO_DBG_DEC(tNameLen);
 			tNameLen *= 2;	/* From Unicode characters to bytes */
@@ -719,6 +732,9 @@ vGet8Stylesheet(FILE *pFile, const pps_info_type *pPPS,
 			NO_DBG_DEC(tPos);
 			if (tPos >= tStdLen) {
 				continue;
+			}
+			if (tOffset + tPos > tStshInfoLen) {
+			    return FALSE;
 			}
 			tUpxLen = (size_t)usGetWord(tOffset + tPos, aucBuffer);
 			NO_DBG_DEC(tUpxLen);
@@ -788,6 +804,7 @@ vGet8Stylesheet(FILE *pFile, const pps_info_type *pPPS,
 	/* Clean up before you leave */
 	abFilled = xfree(abFilled);
 	aucBuffer = xfree(aucBuffer);
+	return TRUE;
 } /* end of vGet8Stylesheet */
 
 /*

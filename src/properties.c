@@ -115,8 +115,10 @@ vGetPropertyInfo(FILE *pFile, const pps_info_type *pPPS,
 	case 8:
 		vGet8LstInfo(pFile, pPPS,
 			aulBBD, tBBDLen, aulSBD, tSBDLen, aucHeader);
-		vGet8Stylesheet(pFile, pPPS,
-			aulBBD, tBBDLen, aulSBD, tSBDLen, aucHeader);
+		if (!vGet8Stylesheet(pFile, pPPS,
+			aulBBD, tBBDLen, aulSBD, tSBDLen, aucHeader)) {
+		    return;
+		}
 		vGet8DopInfo(pFile, &pPPS->tTable,
 			aulBBD, tBBDLen, aulSBD, tSBDLen, aucHeader);
 		vGet8SepInfo(pFile, pPPS,

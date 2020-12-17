@@ -410,7 +410,7 @@ eGet6RowInfo(int iFodo,
 			}
 			if (iCol >= (int)elementsof(pRow->asColumnWidth)) {
 				DBG_DEC(iCol);
-				werr(1, "The number of columns is corrupt");
+				return found_nothing;
 			}
 			pRow->ucNumberOfColumns = (UCHAR)iCol;
 			iPosPrev = (int)(short)usGetWord(

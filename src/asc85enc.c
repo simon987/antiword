@@ -61,8 +61,8 @@ vOutputByte(ULONG ulChar, FILE *pOutFile)
 void
 vASCII85EncodeByte(FILE *pOutFile, int iByte)
 {
-	static ULONG	ulBuffer[4] = { 0, 0, 0, 0 };
-	static int	iInBuffer = 0;
+	static __thread ULONG	ulBuffer[4] = { 0, 0, 0, 0 };
+	static __thread int	iInBuffer = 0;
 	ULONG	ulValue, ulTmp;
 	int	iIndex;
 

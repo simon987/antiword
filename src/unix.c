@@ -21,9 +21,9 @@ werr(int iFatal, const char *szFormat, ...)
 	va_list tArg;
 
 	va_start(tArg, szFormat);
-	(void)vfprintf(stderr, szFormat, tArg);
+//	(void)vfprintf(stderr, szFormat, tArg);
 	va_end(tArg);
-	fprintf(stderr, "\n");
+//	fprintf(stderr, "\n");
 	switch (iFatal) {
 	case 0:		/* The message is just a warning, so no exit */
 		return;

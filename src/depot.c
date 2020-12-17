@@ -51,7 +51,7 @@ bCreateSmallBlockList(ULONG ulStartblock, const ULONG *aulBBD, size_t tBBDLen)
 		if (ulTmp >= (ULONG)tBBDLen) {
 			DBG_DEC(ulTmp);
 			DBG_DEC(tBBDLen);
-			werr(1, "The Big Block Depot is damaged");
+			return FALSE;
 		}
 	}
 	DBG_DEC(tSmallBlockListLen);
@@ -72,7 +72,7 @@ bCreateSmallBlockList(ULONG ulStartblock, const ULONG *aulBBD, size_t tBBDLen)
 		if (ulTmp >= (ULONG)tBBDLen) {
 			DBG_DEC(ulTmp);
 			DBG_DEC(tBBDLen);
-			werr(1, "The Big Block Depot is damaged");
+            return FALSE;
 		}
 		aulSmallBlockList[iIndex] = ulTmp;
 		NO_DBG_DEC(aulSmallBlockList[iIndex]);

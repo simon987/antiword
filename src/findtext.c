@@ -50,7 +50,7 @@ bAddTextBlocks(ULONG ulCharPosFirst, ULONG ulTotalLength,
 		if (ulIndex >= (ULONG)tBBDLen) {
 			DBG_DEC(ulIndex);
 			DBG_DEC(tBBDLen);
-			werr(1, "The Big Block Depot is damaged");
+			return FALSE;
 		}
 		if (ulOffset >= BIG_BLOCK_SIZE) {
 			ulOffset -= BIG_BLOCK_SIZE;
@@ -108,6 +108,7 @@ bGet6DocumentText(FILE *pFile, BOOL bUsesUnicode, ULONG ulStartBlock,
 	DBG_DEC(tTextInfoLen);
 
 	aucBuffer = xmalloc(tTextInfoLen);
+	setBufferSize(tTextInfoLen);
 	if (!bReadBuffer(pFile, ulStartBlock,
 			aulBBD, tBBDLen, BIG_BLOCK_SIZE,
 			aucBuffer, ulBeginTextInfo, tTextInfoLen)) {
@@ -218,6 +219,7 @@ bGet8DocumentText(FILE *pFile, const pps_info_type *pPPS,
 		tBlockSize = BIG_BLOCK_SIZE;
 	}
 	aucBuffer = xmalloc(tTextInfoLen);
+	setBufferSize(tTextInfoLen);
 	if (!bReadBuffer(pFile, pPPS->tTable.ulSB,
 			aulBlockDepot, tBlockDepotLen, tBlockSize,
 			aucBuffer, ulBeginTextInfo, tTextInfoLen)) {
@@ -256,6 +258,9 @@ bGet8DocumentText(FILE *pFile, const pps_info_type *pPPS,
 		lPieces = (long)((ulLen - 4) / 12);
 		DBG_DEC(lPieces);
 		for (lIndex = 0; lIndex < lPieces; lIndex++) {
+		    if (lOff + (lPieces + 1) * 4 + lIndex * 8 + 6 > tTextInfoLen) {
+		        return FALSE;
+		    }
 			ulTextOffset = ulGetLong(
 				lOff + (lPieces + 1) * 4 + lIndex * 8 + 2,
 				aucBuffer);

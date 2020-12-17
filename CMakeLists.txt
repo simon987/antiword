@@ -14,7 +14,7 @@ add_library(antiword
         src/prop2.c src/prop6.c src/prop8.c src/properties.c src/propmod.c src/rowlist.c
         src/sectlist.c src/stylelist.c src/stylesheet.c src/summary.c src/tabstop.c
         src/text.c src/unix.c src/utf8.c src/word2text.c src/worddos.c src/wordlib.c
-        src/wordmac.c src/wordole.c src/wordwin.c src/xmalloc.c src/xml.c
+        src/wordmac.c src/wordole.c src/wordwin.c src/xmalloc.c src/xml.c src/sist2_hotfix.c
 )
 
 target_compile_options(
@@ -22,6 +22,7 @@ target_compile_options(
         PRIVATE
         -Wall
         -pedantic
-        -O2
+        -Ofast
+        -g
         -DNDEBUG
 )

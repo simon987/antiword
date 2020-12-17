@@ -224,11 +224,12 @@ bReadBuffer(FILE *pFile, ULONG ulStartBlock,
 		if (ulIndex >= (ULONG)tBlockDepotLen) {
 			DBG_DEC(ulIndex);
 			DBG_DEC(tBlockDepotLen);
-			if (tBlockSize >= BIG_BLOCK_SIZE) {
-				werr(1, "The Big Block Depot is damaged");
-			} else {
-				werr(1, "The Small Block Depot is damaged");
-			}
+//			if (tBlockSize >= BIG_BLOCK_SIZE) {
+//				werr(1, "The Big Block Depot is damaged");
+//			} else {
+//				werr(1, "The Small Block Depot is damaged");
+//			}
+			return FALSE;
 		}
 		if (ulOffset >= (ULONG)tBlockSize) {
 			ulOffset -= tBlockSize;

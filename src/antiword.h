@@ -249,6 +249,12 @@
 #define MAPPING_FILE_UTF_8	"UTF-8.txt"
 #endif /* __riscos */
 
+/* sist2 hotfixes */
+
+#define BUF_AUC 1
+extern void setBufferSize(ULONG size);
+extern BOOL isOutOfBounds(ULONG offset);
+
 /* Prototypes */
 
 /* asc85enc.c */
@@ -637,7 +643,7 @@ extern USHORT	usStc2istd(UCHAR);
 extern void	vGet2Stylesheet(FILE *, int, const UCHAR *);
 extern void	vGet6Stylesheet(FILE *, ULONG, const ULONG *, size_t,
 			const UCHAR *);
-extern void	vGet8Stylesheet(FILE *, const pps_info_type *,
+extern BOOL	vGet8Stylesheet(FILE *, const pps_info_type *,
 			const ULONG *, size_t, const ULONG *, size_t,
 			const UCHAR *);
 extern void	vFillStyleFromStylesheet(USHORT, style_block_type *);

@@ -217,7 +217,7 @@ ucPopStack(void)
 	fail(tStackNextFree == 0);
 
 	if (tStackNextFree == 0) {
-		werr(1, "The stack is empty, unable to continue");
+//		werr(1, "The stack is empty, unable to continue");
 		return TAG_NOTAG;
 	}
 	return aucStack[--tStackNextFree];
@@ -504,7 +504,8 @@ vAddEndTag(diagram_type *pDiag, UCHAR ucTag)
 		DBG_DEC(ucTag);
 		DBG_DEC(ucTopTag);
 		DBG_FIXME();
-		werr(1, "Impossible tag sequence, unable to continue");
+//		werr(1, "Impossible tag sequence, unable to continue");
+		return;
 	}
 
 	if (atDocBookTags[(UINT)ucTag].bAddNewlineEnd) {
@@ -1010,7 +1011,7 @@ vEndOfParagraphXML(diagram_type *pDiag, UINT uiMaxLevel)
 			break;
 		case TAG_NOTAG:
 			DBG_FIXME();
-			werr(1, "Impossible tag sequence, unable to continue");
+//			werr(1, "Impossible tag sequence, unable to continue");
 			break;
 		default:
 			DBG_DEC(ucTopTag);
