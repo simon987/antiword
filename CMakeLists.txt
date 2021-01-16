@@ -25,4 +25,5 @@ target_compile_options(
         -Ofast
         -g
         -DNDEBUG
+        -fPIE
 )

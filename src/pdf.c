@@ -956,7 +956,7 @@ vAddFontsPDF(diagram_type *pDiag)
 		vFPprintf(pOutFile, "endobj\n");
 	}
 
-	/* The Resources */
+    /* The Resources */
 	vSetLocation(17);
 	vFPprintf(pOutFile, "17 0 obj\n");
 	vFPprintf(pOutFile, "<<\n");
