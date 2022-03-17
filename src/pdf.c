@@ -514,6 +514,7 @@ vMove2NextPage(diagram_type *pDiag, BOOL bNewSection)
 	vAddHeader(pDiag);
 } /* end of vMove2NextPage */
 
+#define VMOVETO_MAX_DEPTH 300
 /*
  * vMoveTo - move to the specified X,Y coordinates
  *
@@ -527,7 +528,24 @@ vMoveTo(diagram_type *pDiag, long lLastVerticalMovement)
 	fail(pDiag->pOutFile == NULL);
 
 	if (pDiag->lYtop <= lFooterHeight + PS_BOTTOM_MARGIN && !bInFtrSpace) {
-		vMove2NextPage(pDiag, FALSE);
+
+        // NOTE: SIST2: only output the first page
+        vAddFooter(pDiag);
+        vEndPageObject(pDiag->pOutFile);
+
+        iObjectNumberCurr++;
+        vSetLocation(iObjectNumberCurr);
+        vFillNextPageObject();
+        vFPprintf(pDiag->pOutFile, "%d 0 obj\n", iObjectNumberCurr);
+        vFPprintf(pDiag->pOutFile, "<<\n");
+        vFPprintf(pDiag->pOutFile, "/Type /Page\n");
+        vFPprintf(pDiag->pOutFile, "/Parent 3 0 R\n");
+        vFPprintf(pDiag->pOutFile, "/Resources 17 0 R\n");
+        vFPprintf(pDiag->pOutFile, "/Contents %d 0 R\n", iObjectNumberCurr + 1);
+        vFPprintf(pDiag->pOutFile, ">>\n");
+        vFPprintf(pDiag->pOutFile, "endobj\n");
+        // ^^^
+
 		/* Repeat the last vertical movement on the new page */
 		pDiag->lYtop -= lLastVerticalMovement;
 	}
@@ -978,6 +996,7 @@ static void
 vPrintPDF(FILE *pFile, const char *szString, size_t tStringLength,
 	USHORT usFontstyle)
 {
+
 	const UCHAR	*aucBytes;
 	double	dMove;
 	size_t	tCount;

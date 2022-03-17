@@ -253,7 +253,7 @@
 
 #define BUF_AUC 1
 extern void setBufferSize(ULONG size);
-extern BOOL isOutOfBounds(ULONG offset);
+extern BOOL isOutOfBounds(ULONG offset, size_t size);
 
 /* Prototypes */
 

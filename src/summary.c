@@ -220,7 +220,7 @@ vAnalyseSummaryInfo(const UCHAR *aucBuffer)
 		ulOffset = ulGetLong(12 + tIndex * 8, aucBuffer);
 		NO_DBG_DEC(tPropID);
 		NO_DBG_HEX(ulOffset);
-		if (isOutOfBounds(ulOffset)) {
+		if (isOutOfBounds(ulOffset, sizeof(long))) {
 		    return FALSE;
 		}
 		tPropType = (size_t)ulGetLong(ulOffset, aucBuffer);
@@ -280,7 +280,7 @@ vAnalyseDocumentSummaryInfo(const UCHAR *aucBuffer)
 		ulOffset = ulGetLong(12 + tIndex * 8, aucBuffer);
 		NO_DBG_DEC(tPropID);
 		NO_DBG_HEX(ulOffset);
-		if (isOutOfBounds(ulOffset)) {
+		if (isOutOfBounds(ulOffset, sizeof(long))) {
 		    return;
 		}
 		tPropType = (size_t)ulGetLong(ulOffset, aucBuffer);
