@@ -26,4 +26,5 @@ target_compile_options(
         -g
         -DNDEBUG
         -fPIE
+        -fPIC
 )
